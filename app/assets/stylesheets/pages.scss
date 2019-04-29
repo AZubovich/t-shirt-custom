@@ -1,0 +1,33 @@
+// Place all the styles related to the pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  
+}
+.hideOperations {
+  display: none;
+}
+
+.displayOperations {
+  display: block;
+}
+
+.editor-area {
+  overflow: hidden;
+  float: left;
+}
+
+.controls {
+  width: 170px;
+  overflow: hidden;
+  float: right;
+  position: relative;
+}
+
+.canvas-bg-wrapper {
+  margin-left: 300px;
+  
+}
+
+

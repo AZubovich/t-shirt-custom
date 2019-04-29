@@ -1,0 +1,69 @@
+<head><link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script></head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<% if current_user %>
+ <%= render 'posts/navsing' %>
+<% else %>
+  <%=render 'posts/nav' %>
+<% end %>
+<div class="container">
+          <div class="well">
+              <div class="media">
+                <a class="pull-left" href="#">
+                <%- if @post.image.attached? %>
+                <div style="width:400px; height: auto">
+                <%=image_tag(@post.image, style: 'width:100%') %>
+                </div>
+                <%-end%>
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading"><%= @post.title %></h4>
+                  <p class="text-right"><%= @post.user.username %></p>
+                  <p><%= @post.description %></p>
+                  <ul class="list-inline list-unstyled">
+                    <%=link_to like_post_path(@post), class:"like-btn", method: :put, remote: :true do %>
+                      <div>
+                        <span><p><i class="fa fa-thumbs-up fa-3x"></i></p></span>
+                      </div>            
+                    <% end %>
+                    <li><span class="likes-count"><%= @post.get_upvotes.size %> likes</span></li>
+                    <li>|</li>
+                    <span><i class="glyphicon glyphicon-comment"></i> <%= pluralize(@post.comments.count, "comment") %></span>
+                    <li>|</li>
+              </ul>
+              <p style="font-size: 25px;"> Price: <%= @post.price %></p>
+               </div>
+            </div>
+          </div>
+        </div>
+
+<div class="back-control">
+<%= link_to 'Back', posts_path, class:"btn btn-secondary btn-lg btn-block" %>
+</div>
+<br>
+<h2 style="font-size: 25px;">Add your comment!</h2>
+<br>
+<%= form_with model: [@post,@comment] do |f| %>
+  <div class="comment-control">
+    <div class="comment-label" style="font-size: 25px;" >
+  <%= f.label :Comment,class:"col-4 col-form-label" %>
+  <br>
+  </div>
+    <div class="col-8">
+      <%= f.text_area :body, class:"form-control"%>
+    </div>
+  </div>
+  <div class=" comment-button">
+<%= f.submit "Comment", class:"btn btn-secondary" %>
+</div>
+<% end %>
+<div id="comment_pane">
+<% @comments.each do |comment| %>
+  <%= render 'comments/comment', comment: comment %>
+<% end %>
+</div>
+
+
+
+ 

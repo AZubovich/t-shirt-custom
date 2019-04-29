@@ -1,0 +1,33 @@
+<head><link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script></head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+ <%= render 'posts/navsing' %>
+<div id="canvas-wrapper" class="editor-area">
+  <div class="canvas-bg-wrapper"> 
+      <canvas width="580" height="580" id="c"></canvas>
+  </div>
+</div>
+<div class="controls">
+<input type="file" id="imgLoader"><br>
+  <%= submit_tag 'Insert Text', :onClick => "insertText();", :class => 'btn btn-secondary'%><br><br>
+  <%= submit_tag 'Male model', :onClick => "insertMale();", :class => 'btn btn-secondary'%><br><br>
+  <%= submit_tag 'Female model', :onClick => "insertFemale();", :class => 'btn btn-secondary'%><br><br>
+  <%= submit_tag 'Save statement', :onClick => "toJSON();", :class => 'btn btn-secondary'%><br><br>
+  <%= submit_tag 'Upload last statment', :onClick => "fromJSON();", :class => 'btn btn-secondary'%><br><br>
+  <%= submit_tag 'Delete Object', :onClick => "deleteObjects();", :class => 'btn btn-secondary'%><br><br>
+  <div id="textMenu" class="hideOperations">
+      <button class="btn btn-secondary" id="underline">UnderLine</button><br><br>
+  <input type="range" min="5" max="150" value="40" id="size"><br>
+    <input type="range" min="0.1" max="5" value="0.1" id="height"><br>
+  <input class="btn btn-secondary" type="color" id="color">
+  <input class="btn btn-secondary" type="color" id="bg-color"><br><br>
+  <button class="btn btn-secondary" id="italic">Style</button>
+  <button class="btn btn-secondary" id="centered">Centre</button><br><br>
+  <button class="btn btn-secondary" id="left">Left</button>
+  <button class="btn btn-secondary" id="right">Right</button>
+  </div>
+  
+</div>
+<%= javascript_include_tag 'design.js' %>
+

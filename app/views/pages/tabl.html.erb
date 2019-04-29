@@ -1,0 +1,36 @@
+<head><link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script></head>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"/>
+<%= render 'posts/navsing' %>
+<%= form_tag edit_multiple_users_path, method: :post do %> 
+    <div class="btn-group" role="group" aria-label="Basic example">
+     <%= submit_tag 'Delete', :class => 'btn btn-secondary'%>
+     <%= submit_tag 'Lock', :class => 'btn btn-secondary'%>
+     <%= submit_tag 'Unlock', :class => 'btn btn-secondary'%>
+     <%= submit_tag 'Admin', :class => 'btn btn-secondary'%>
+    </div>
+    <br>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th><%= check_box_tag('check_all', 'check_all', false, :onClick => "checkAll(this);") %></th>
+          <th scope="col">Email</th>
+          <th scope="col">CreatedAt</th>
+          <th scope="col">Lock State</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+      <tr>
+          <th scope="row"><%= check_box_tag('users_id[]', user.id)%></th>
+          <td><%= user.email %></td>
+          <td><%= user.created_at %></td>
+          <td><%= user.access_locked? ? "Locked" : "Unlocked" %></td>
+          <td><%= user.admin ? "Admin" : "User" %></td>
+      </tr>
+        <%end%>
+      </tbody>
+    </table>
+ <%end%>

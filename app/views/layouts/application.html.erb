@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Shirt</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <%= stylesheet_link_tag 'pages' %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.16/fabric.js" %>
+  </head>
+
+  <body>
+    
+    <%= yield %>
+  </body>
+</html>

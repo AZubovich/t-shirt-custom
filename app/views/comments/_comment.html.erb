@@ -1,0 +1,23 @@
+<div id="comment-<%= comment.id %>">
+	<section class="comment-list">
+	<!-- First Comment -->
+	<header class="text-left" style="font-size: 15px;">
+	  <div class="comment-user"><i class="fa fa-user"></i> <%= comment.user.username %>
+	</div>
+	  <time class="comment-date" ><i class="fa fa-clock-o"></i> <%= comment.created_at.strftime("%e %B %y %H : %M") %></time>
+	</header>
+	<div class="comment-post">
+	  <p style="font-size: 20px;"> <%= comment.body %></p>
+	  <% if current_user %>
+	  <li><% if current_user == comment.user || current_user.admin %>
+		<%= link_to "Delete", post_comment_path(@post, comment), class:"btn btn-secondary btn-sm",method: :delete, remote: true, style:'float: right' %></li>
+		<%end%>
+		<%end%>
+	</div>
+	</section>
+	<hr/>
+	<br/>
+</div>
+
+
+
